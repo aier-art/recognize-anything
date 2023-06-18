@@ -208,7 +208,6 @@ class RAM(nn.Module):
       encoding="utf-8"
     ) as f:
       tag_list = f.read().splitlines()
-    print(tag_list[-1])
     tag_list = np.array(tag_list)
     return tag_list
 
