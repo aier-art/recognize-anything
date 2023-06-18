@@ -1,0 +1,5 @@
+[tool.ruff]
+select = ["E501"]
+line-length = 999
+
+
