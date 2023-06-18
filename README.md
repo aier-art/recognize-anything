@@ -7,22 +7,21 @@ Official PyTorch Implementation of <a href="https://recognize-anything.github.io
 
 Welcome to try our [RAM & Tag2Text web Demo! 🤗](https://huggingface.co/spaces/xinyu1205/Recognize_Anything-Tag2Text)
 
-Both Tag2Text and RAM exihibit strong recognition ability. 
+Both Tag2Text and RAM exihibit strong recognition ability.
 We have combined Tag2Text and RAM with localization models (Grounding-DINO and SAM) and developed a strong visual semantic analysis pipeline in the [Grounded-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) project.
 
 ![](./images/ram_grounded_sam.jpg)
 
-
-
 ## :bulb: Highlight of RAM
+
 RAM is a strong image tagging model, which can recognize any common category with high accuracy.
+
 - **Strong and general.** RAM exhibits exceptional image tagging capabilities with powerful zero-shot generalization;
-    - RAM showcases impressive zero-shot performance, significantly outperforming CLIP and BLIP.
-    - RAM even surpasses the fully supervised manners (ML-Decoder).
-    - RAM exhibits competitive performance with the Google tagging API.
+  - RAM showcases impressive zero-shot performance, significantly outperforming CLIP and BLIP.
+  - RAM even surpasses the fully supervised manners (ML-Decoder).
+  - RAM exhibits competitive performance with the Google tagging API.
 - **Reproducible and affordable.** RAM requires Low reproduction cost with open-source and annotation-free dataset;
 - **Flexible and versatile.** RAM offers remarkable flexibility, catering to various application scenarios.
-
 
 <p align="center">
  <table class="tg">
@@ -42,15 +41,18 @@ RAM is a strong image tagging model, which can recognize any common category wit
 </p>
 
 RAM significantly improves the tagging ability based on the Tag2text framework.
-- **Accuracy.** RAM utilizes a **data engine** to **generate** additional annotations and **clean** incorrect ones,  **higher accuracy** compared to Tag2Text.
-- **Scope.** RAM upgrades the number of fixed tags from  3,400+ to **[6,400+](./ram/data/ram_tag_list.txt)** (synonymous reduction to 4,500+ different semantic tags), covering **more valuable categories**.
+
+- **Accuracy.** RAM utilizes a **data engine** to **generate** additional annotations and **clean** incorrect ones, **higher accuracy** compared to Tag2Text.
+- **Scope.** RAM upgrades the number of fixed tags from 3,400+ to **[6,400+](./ram/data/ram_tag_list.txt)** (synonymous reduction to 4,500+ different semantic tags), covering **more valuable categories**.
   Moreover, RAM is equipped with **open-set capability**, feasible to recognize tags not seen during training
 
 ## :sunrise: Highlight of Tag2text
+
 Tag2Text is an efficient and controllable vision-language model with tagging guidance.
+
 - **Tagging.** Tag2Text recognizes **[3,400+](./ram/data/tag_list.txt)** commonly human-used categories without manual annotations.
-- **Captioning.** Tag2Text integrates **tags information** into text generation as the **guiding elements**, resulting in **more controllable and comprehensive descriptions**. 
-- **Retrieval.** Tag2Text provides **tags** as **additional visible alignment indicators** for image-text retrieval. 
+- **Captioning.** Tag2Text integrates **tags information** into text generation as the **guiding elements**, resulting in **more controllable and comprehensive descriptions**.
+- **Retrieval.** Tag2Text provides **tags** as **additional visible alignment indicators** for image-text retrieval.
 
 <p align="center">
  <table class="tg">
@@ -61,14 +63,12 @@ Tag2Text is an efficient and controllable vision-language model with tagging gui
 </p>
 </details>
 
-
 <!-- ## :sparkles: Highlight Projects with other Models
 - [Tag2Text/RAM with Grounded-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) is trong and general pipeline for visual semantic analysis, which can automatically **recognize**, detect, and segment for an image!
 - [Ask-Anything](https://github.com/OpenGVLab/Ask-Anything) is a multifunctional video question answering tool. Tag2Text provides powerful tagging and captioning capabilities as a fundamental component.
 - [Prompt-can-anything](https://github.com/positive666/Prompt-Can-Anything) is a gradio web library that integrates SOTA multimodal large models, including Tag2text as the core model for graphic understanding -->
 
-
-<!-- 
+<!--
 ## :fire: News
 
 - **`2023/06/08`**: We release the [Recognize Anything Model (RAM) Tag2Text web demo 🤗](https://huggingface.co/spaces/xinyu1205/Recognize_Anything-Tag2Text), checkpoints and inference code!
@@ -79,11 +79,7 @@ Tag2Text is an efficient and controllable vision-language model with tagging gui
 - **`2023/04/10`**: Code and checkpoint is available Now!
 - **`2023/03/14`**: [Tag2Text web demo 🤗](https://huggingface.co/spaces/xinyu1205/Recognize_Anything-Tag2Text) is available on Hugging Face Space!  -->
 
-
-
-
-
-## :writing_hand: TODO 
+## :writing_hand: TODO
 
 - [x] Release Tag2Text demo.
 - [x] Release checkpoints.
@@ -91,8 +87,6 @@ Tag2Text is an efficient and controllable vision-language model with tagging gui
 - [x] Release RAM demo and checkpoints.
 - [ ] Release training codes (until July 8st at the latest).
 - [ ] Release training datasets (until July 15st at the latest).
-
-
 
 ## :toolbox: Checkpoints
 
@@ -128,10 +122,9 @@ Tag2Text is an efficient and controllable vision-language model with tagging gui
   </tbody>
 </table>
 
-
 ## :running: Model Inference
 
-### **Setting Up** ###
+### **Setting Up**
 
 1. Install the dependencies::
 
@@ -151,27 +144,28 @@ Then the RAM and Tag2Text model can be imported in other projects:
 from ram.models import ram, tag2text_caption
 ```
 
-### **RAM Inference** ##
+### **RAM Inference**
 
 Get the English and Chinese outputs of the images:
+
 <pre/>
 python inference_ram.py  --image images/1641173_2291260800.jpg \
 --pretrained pretrained/ram_swin_large_14m.pth
 </pre>
 
-
-### **RAM Inference on Unseen Categories (Open-Set)** ##
+### **RAM Inference on Unseen Categories (Open-Set)**
 
 Firstly, custom recognition categories in [build_openset_label_embedding](./ram/utils/openset_utils.py), then get the tags of the images:
+
 <pre/>
 python inference_ram_openset.py  --image images/openset_example.jpg \
 --pretrained pretrained/ram_swin_large_14m.pth
 </pre>
 
-
-### **Tag2Text Inference** ##
+### **Tag2Text Inference**
 
 Get the tagging and captioning results:
+
 <pre/>
 python inference_tag2text.py  --image images/1641173_2291260800.jpg \
 --pretrained pretrained/tag2text_swin_14m.pth
@@ -181,8 +175,8 @@ Or get the tagging and sepcifed captioning results (optional):
 --pretrained pretrained/tag2text_swin_14m.pth \
 --specified-tags "cloud,sky"</pre>
 
-
 ## :black_nib: Citation
+
 If you find our work to be useful for your research, please consider citing.
 
 ```
@@ -202,8 +196,9 @@ If you find our work to be useful for your research, please consider citing.
 ```
 
 ## :hearts: Acknowledgements
+
 This work is done with the help of the amazing code base of [BLIP](https://github.com/salesforce/BLIP), thanks very much!
 
 We want to thank @Cheng Rui @Shilong Liu @Ren Tianhe for their help in [marrying RAM/Tag2Text with Grounded-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything).
 
-We also want to thank [Ask-Anything](https://github.com/OpenGVLab/Ask-Anything), [Prompt-can-anything](https://github.com/positive666/Prompt-Can-Anything) for  combining RAM/Tag2Text, which greatly expands the application boundaries of RAM/Tag2Text.
+We also want to thank [Ask-Anything](https://github.com/OpenGVLab/Ask-Anything), [Prompt-can-anything](https://github.com/positive666/Prompt-Can-Anything) for combining RAM/Tag2Text, which greatly expands the application boundaries of RAM/Tag2Text.
